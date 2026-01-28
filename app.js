@@ -1,11 +1,25 @@
 'use strict'
 
-const arr = [
-    { id: 1, name: "Вася" },
-    { id: 2, name: "Петя" },
-    { id: 1, name: "Вася" },
-];
+//Изучаю блок Расчеты и математика
 
-const arrId =[...new Set(arr.map(item=> item.id))];
-const universalArr = arrId.map(id => arr.find(item => item.id == id));
-console.log(universalArr);
+/*Первый урок */
+// console.log(10 === 10.0);
+// //0.1
+// console.log(0.1+0.2 === 0.3);
+// console.log(0.1+0.2);
+
+// console.log(Number('10'));
+// console.log(+'20');
+// console.log(Number.parseInt('11',10));
+// console.log(Number.parseInt('11 sec',10));
+// console.log(Number.parseInt('sec 11',10));
+
+// console.log(Number.parseInt('11.5',10));
+// console.log(Number.parseInt('11.5 sec',10));
+// console.log(Number.parseInt('sec 11.5',10));
+
+// console.log(Number.isNaN(Number('10sdfs')));
+// console.log(Number.isNaN(10/0));
+// console.log(Number.isFinite(10/0));
+// console.log(Number.isFinite(Number('10sdfs')));
+// console.log(Number.isFinite(10));
