@@ -1,8 +1,7 @@
 'use strict'
 
-console.log(random(4,5));
-
 function random(min,max){
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-console.log(random(1,20));
+
+console.log(random(4,5));
