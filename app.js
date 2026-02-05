@@ -1,11 +1,7 @@
 'use strict'
+ 
+console.log( rollDice({dice:"d6"}));
 
-const arr = [
-    { id: 1, name: "Вася" },
-    { id: 2, name: "Петя" },
-    { id: 1, name: "Вася" },
-];
-
-const arrId =[...new Set(arr.map(item=> item.id))];
-const universalArr = arrId.map(id => arr.find(item => item.id == id));
-console.log(universalArr);
+function rollDice(dice){
+    return Math.trunc(Math.random()*(Number.parseInt(dice.dice.slice(1))) + 1);
+}
