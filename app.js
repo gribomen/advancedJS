@@ -1,30 +1,25 @@
 'use strict';
 
-const optionsl = {
-    style: 'currency',
-    currency: "RUB"
-}
+const now = new Date();
+console.log(now);
 
-const options2 = {
-    style: 'currency',
-    currency: 'USD'
-}
+console.log(new Date('02-01-2023'));
+console.log(new Date('02/01/2023'));
+console.log(new Date('2023/01/02'));
+console.log(new Date('10 Jan 2023'));
+console.log(new Date('10 янв 2023'));
+console.log(new Date('Dec 22 2022 20:40:34'));
 
-const options3 = {
-    style: 'decimal',
-}
+console.log(new Date(2024, 11, 31, 10, 5, 10));
+console.log(new Date(2024, 12, 10 + 100));
+console.log(Date.now());
+console.log(new Date(Date.now()));
 
-const options4 = {
-    style: 'percent'
-}
+console.log(now.getFullYear());
+console.log(now.getMonth);
+console.log(now.getDate());
+console.log(now.getDay());
+console.log(now.getMinutes());
+console.log(now.getTime());
 
-const options5 = {
-    style: 'unit',
-    unit: 'celsius'
-}
-
-console.log(new Intl.NumberFormat('ru-RU',optionsl).format(23000));
-console.log(new Intl.NumberFormat('ru-RU',options2).format(23000));
-console.log(new Intl.NumberFormat('ru-RU',options3).format(10000));
-console.log(new Intl.NumberFormat('ru-RU',options4).format(0.1));
-console.log(new Intl.NumberFormat('ru-RU',options5).format(23));
+console.log(new Date(now.setFullYear(2030)));
