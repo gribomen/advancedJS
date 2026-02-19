@@ -51,12 +51,11 @@ function changeNow(){
 
     const second_element = document.createElement("span");
     if(second[0] == "0"){
-        second_element.innerText = second[1] + " минут";
+        second_element.innerText = second[1] + " секунд";
     }else{
-        second_element.innerText = second + " минут";        
+        second_element.innerText = second + " секунд";        
     }
 
-    second_element.innerText = second + " секунд";
     timer.innerHTML = month_element.innerHTML + ", " +
         day_element.innerHTML + ", " +
         hour_element.innerHTML  + ", " +
