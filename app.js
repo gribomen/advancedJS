@@ -1,14 +1,8 @@
 'use strict';
 
-console.log(1);
+const mark1 = performance.now();
 
-const messages = ['Bash!','Boom!'];
-
-const boomTimer = setTimeout((message1,message2) =>{
-    console.log(2);
-    console.log(message1);
-    console.log(message2);
-},1000,...messages);
-// clearTimeout(boomTimer);
-
-console.log(3);
+setTimeout(()=>{
+    const mark2 = performance.now();
+    console.log(mark2 - mark1);
+},1000)
