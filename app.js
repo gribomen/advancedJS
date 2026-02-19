@@ -1,27 +1,19 @@
 'use strict';
 
-const date = new Date();
+const birthDay = "2002-01-01";
 
-console.log(date);
-console.log(new Intl.DateTimeFormat('ru-RU').format(date));
-const options1 = {
-    hour: 'numeric',
-    minute:'numeric'
-};
-console.log(new Intl.DateTimeFormat('ru-RU', options1).format(date));
-const options2 = {
-    hour:'numeric',
-    minute:'numeric',
-    month:'long',
-    weekday: 'short',
-    year:'2-digit'
-};
-console.log(new Intl.DateTimeFormat('en-US', options2).format(date));
-console.log(new Intl.DateTimeFormat('en-US', options2).format(date));
+/**
+ * Функция для валидации возраста пользователя, больше 14 лет или меньше
+ * @param {*} birthDay - дата рождения в формате "2002-01-01"
+ * @returns {boolean} возвращает true если больше 14 лет пользователю в ином случае false
+ */
+function validateBirthDay(birthDay){
+    const now = Date.now();
+    const difference = (now - (new Date(birthDay)).getTime())/(1000*60*60*24);
+    return (Math.round(difference) - 365*14 - Math.round(14/4)) > 0;
+}
 
-console.log(navigator.language);
-console.log(new Intl.DateTimeFormat(navigator.language,options1).format(date));
-
+console.log(validateBirthDay(birthDay));
  
 
 
