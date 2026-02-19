@@ -1,17 +1,23 @@
 'use strict'
 
-const user = {
-    name: 'Vasia',
-    birthday:'09/06/1999'
+const timeCooking = "01.30";
+
+function getTimerCookPizza(ms){
+    const end = new Date().getTime() + ms; 
+    const interval = setInterval(() =>{
+        console.log(
+            new Intl.DateTimeFormat(navigator.language,{
+                minute:"numeric",
+                second:"numeric"
+            }).format(end + 100 - new Date())
+        );
+    },1000);
+
+    setTimeout(()=>{
+        clearInterval(interval);
+        console.log("🍕!!!");
+    },ms);
+
 }
 
-function isBirthdayToday(user){
-    const now = new Date();
-    const birthdayDay =  new Date(user.birthday);
-    if((now.getMonth() == birthdayDay.getMonth()) && (now.getDay() == birthdayDay.getDay())){
-        return true;    
-    }
-    return false;
-}
-
-console.log(isBirthdayToday(user));
+getTimerCookPizza(35000);
