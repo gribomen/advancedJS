@@ -1,18 +1,21 @@
 'use strict';
 
-const User = function (email, password){
-    this.email = email;
-    this.password = password;
-};
+const Book = function(title, author){
+    this.author = author;
+    this.title = title
+    this.isRead = false;
+}
 
-const user1 = new User('ader@lu.ru','123');
-console.log(user1);
-const user2 = new User('ader2@lu.ru','123');
-console.log(user2)
-console.log(user2 instanceof User);
+Book.prototype.read = function() {
+    this.isRead = true;
+}
 
-// Создается пустой объект
-// Вызывается User функция
-// this = пустому объекту
-// объект связывается с prototype
-// возвращается объект
+const lordOftheRing = new Book ('Load of the ring', 'Tolkien');
+lordOftheRing.read();
+
+console.log(lordOftheRing);
+
+console.log(lordOftheRing.__proto__);
+console.log(lordOftheRing.__proto__ === Book.prototype);
+console.log(Book.prototype.isPrototypeOf(lordOftheRing));
+console.log(Book.prototype.isPrototypeOf(Book));
