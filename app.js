@@ -10,7 +10,6 @@ Hero.prototype.talk= function(){
     console.log(`Я ${this.name} и говорю на ${this.language}`);
 }
 
-
 const Orc = function (paramHero, weapon){
     Hero.call(this,paramHero);
     this.weapon = weapon;
@@ -26,6 +25,8 @@ const Elf = function (paramHero,spell){
     Hero.call(this,paramHero);
     this.spell = spell;
 };
+
+Elf.prototype.talk = Hero.prototype.talk;
 
 Elf.prototype.castSpell= function (){
     console.log(`Кастую заклинание ${this.spell}`);
