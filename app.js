@@ -1,15 +1,27 @@
 'use strict';
 
-class Test {
-    static a = 1;
-    static hello() {
-        console.log('Hello');
-    }
-
-    static {
-        let b = 5;
-        this.a = 5;
-    }
+const Book = function(title, author){
+    this.title =  title;
+    this.author = author;
 }
-Test.hello();
-console.log(Test.a);
+
+
+Book.prototype.buy = function(){
+    console.log('Buy');
+}
+
+const AudioBook = function(title, author, lenMin){
+    Book.call(this,title, author);
+    this.lenMin = lenMin;
+}
+
+AudioBook.prototype = Object.create(Book.prototype);
+AudioBook.prototype.constructor = AudioBook;
+AudioBook.prototype.log = function(){
+    console.log(`${this.title} -  ${this.lenMin}`);
+}
+
+const book =  new AudioBook('Lord Of The Rings', 'Tolkien', 20*60);
+book.log();
+book.buy();
+console.log(book);
