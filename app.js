@@ -1,47 +1,29 @@
-'use strict';
-
-class User {
-    #login;
-    #_password;
-
-    #getPassword(){
-        return this.#password;
+'use strice'
+class Car{
+    #_mark;
+    #_model;
+    #_mileage;
+    
+    constructor(mark,model,mileage){
+        this.#_mark = mark;
+        this.#_model = model;
+        this.#_mileage = mileage;
     }
 
-    constructor(login, password){
-        this.#login = login;
-        this.#password = password;
+    get mileage (){
+        return this.#_mileage;
     }
 
-    set #password(pass){
-        this.#_password = pass.split('').reverse().join('');
+    set mileage (mileage){
+        mileage ?  this.#_mileage = mileage : false; 
     }
 
-    get #password(){
-        return this.#_password.split('').reverse().join('');
-    }
-
-    get login(){
-        return this.#login;
-    }
-
-    verificationPassword(password){
-        return this.#password == password;
-    }
-
-    changePassword(lastPassword, newPassword){
-        if(this.verificationPassword(lastPassword)){
-            this.#password = newPassword;
-            return true;
-        }
-        return false;
+    info(){
+        return `Марка ${this.#_mark}, модель ${this.#_model}, пробег ${this.#_mileage}`
     }
 }
 
-const user1 = new User( "slava","123");
-
-console.log(user1.verificationPassword("123"));
-console.log(user1.verificationPassword("137"));
-user1.changePassword("123","137");
-console.log(user1.verificationPassword("123"));
-console.log(user1.verificationPassword("137"));
+const car1 = new Car ("BMW", "JX-3","200");
+car1.mileage = 400;
+console.log(car1.mileage);
+console.log(car1.info());
