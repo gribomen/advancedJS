@@ -9,13 +9,20 @@ const Book = function(title, author){
 Book.prototype.read = function() {
     this.isRead = true;
 }
+class BookClass{
+    isRead = false;
 
-const lordOftheRing = new Book ('Load of the ring', 'Tolkien');
-lordOftheRing.read();
+    constructor(title, author){
+        this.author = author;
+        this.title = title;
+    }
 
-console.log(lordOftheRing);
+    read() {
+        this.isRead = true;
+    }
+}
 
-console.log(lordOftheRing.__proto__);
-console.log(lordOftheRing.__proto__ === Book.prototype);
-console.log(Book.prototype.isPrototypeOf(lordOftheRing));
-console.log(Book.prototype.isPrototypeOf(Book));
+const lotr1 =  new BookClass('lotr','Tolkien');
+const lotr2 =  new Book('lotr','Tolkien');
+console.log(lotr1.__proto__);
+console.log(lotr2.__proto__);
