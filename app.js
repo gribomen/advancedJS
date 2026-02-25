@@ -1,47 +1,62 @@
 'use strict';
 
-class User {
-    #login;
-    #_password;
-
-    #getPassword(){
-        return this.#password;
+class Enemy {
+    health;
+    constructor(health){
+        this.health = health;
     }
 
-    constructor(login, password){
-        this.#login = login;
-        this.#password = password;
-    }
-
-    set #password(pass){
-        this.#_password = pass.split('').reverse().join('');
-    }
-
-    get #password(){
-        return this.#_password.split('').reverse().join('');
-    }
-
-    get login(){
-        return this.#login;
-    }
-
-    verificationPassword(password){
-        return this.#password == password;
-    }
-
-    changePassword(lastPassword, newPassword){
-        if(this.verificationPassword(lastPassword)){
-            this.#password = newPassword;
-            return true;
+    getDemage(damage){
+        if(damage < this.health){
+            this.health = this.health - damage;
+            console.log(this.health);
+            return;
         }
-        return false;
+
+        this.health = 0;
     }
 }
 
-const user1 = new User( "slava","123");
+class Sword {
+    #damage;
+    constructor(damage){
+        this.#damage = damage;
+    }
 
-console.log(user1.verificationPassword("123"));
-console.log(user1.verificationPassword("137"));
-user1.changePassword("123","137");
-console.log(user1.verificationPassword("123"));
-console.log(user1.verificationPassword("137"));
+    strike(enemy){
+        enemy.getDemage(this.#damage);
+    }
+}
+
+class Orc extends Enemy{
+    constructor(health){
+        super(health);
+    }
+
+    getDemage(damage){
+        if(Math.random() > 0.5){
+            if(this.health> damage){
+                this.health = this.health - damage;
+            }else{
+                this.health = 0;
+            }
+            console.log(this.health);
+            return;
+        }
+        console.log(this.health);
+    }
+}
+
+const enemy1 = new Orc(10);
+const sword = new Sword(6)
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
+sword.strike(enemy1);
