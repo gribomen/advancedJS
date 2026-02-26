@@ -1,44 +1,49 @@
 'use strict';
 
-class Wallet{
-    balance = 0;
+class Person{
 
-    add(sum){
-        this.balance +=sum;
-        return this;
+    constructor(species,name,language){
+        this.species = species;
+        this.name = name;
+        this.language = language;
     }
 
-    remove (sum){        
-        this.balance -=sum;
-        return this;
-    }
-}
-
-const wallet = new Wallet();
-const res = wallet
-    .add(100)
-    .remove(10)
-    .add(15)    
-;
-console.log(res);
-
-class Builder{
-    house = [];
-
-    addRoof() {
-        this.house.roof = 'Roof';
-        return this;
-    }
-
-    addFloor() {
-        this.house.floor = 'Floor';
-        return this;
-    }
-
-    execute() {
-        return this.house;
+    talk(){
+        return `Меня зовут ${this.name}, говорю на ${this.language} языке.`;
     }
 }
 
-const house = new Builder().addRoof().addFloor().execute();
-console.log(house);
+class Orc extends Person{
+
+    constructor(species,name,language,weopean){
+        super(species,name,language);
+        this.weopean = weopean;
+    }
+
+    hit(person){
+        return `Бью ${person.name} оружеем ${this.weopean}`;
+    }
+   
+}
+
+class Elf extends Person{
+
+    constructor(species,name,language,spell){
+        super(species,name,language);
+        this.spell = spell;
+    }
+
+    castSpell(){
+        return `Кастую заклинание ${this.spell}`;
+    }
+}
+
+const orc = new Orc("орк","Болг","мордорский","топор орка");
+const elf = new Elf("эльф","Гондалин","эльфийский","шар света");
+
+console.log(orc);
+console.log(orc.hit(elf));
+console.log(elf);
+console.log(elf.castSpell());
+
+
