@@ -1,32 +1,46 @@
 'use strict';
 
-class DB{
-    save(items){
-        console.log(`Saved: ${items}`)
+class Billing{
+    constructor(amount){
+        this.amount = amount;
+    }
+
+    calculateTotal(){
+        return this.amount;       
     }
 }
 
-class MongoDB extends DB{
-    save(items){
-        console.log(`Saved to Mongo: ${items}`)
+class fixBilling extends Billing{
+    
+    constructor(amount){
+        super(this,amount)
+    }
+
+    calculateTotal(){
+        return this.calculateTotal();
     }
 }
 
-class ToDoList {
-    items = [1,2,3];
-    db;
-
-    constructor(db){
-        this.db = db;
+class hourBilling extends Billing{
+    
+    constructor(amount,hours){
+        super(this,amount);
+        this.hours = hours;
     }
 
-    saveToDb() {
-        this.db.save(this.items);
+    calculateTotal(){
+        return this.amount*this.hours;
     }
 }
 
-const list1 = new ToDoList(new DB());
-list1.saveToDb();
+class itemBilling extends Billing{
+    
+    constructor(amount,element){
+        super(this,amount);
+        this.element = element;
+    }
 
-const list2 = new ToDoList(new MongoDB());
-list2.saveToDb();
+    calculateTotal(){
+        return this.amount * this.element;
+    }
+}
