@@ -1,31 +1,67 @@
 'use strict';
 
-class Book{
-    
-    constructor(title, author){
-        this.title =  title;
-        this.author = author;
+'use strict';
+
+class Enemy {
+    health;
+    constructor(health){
+        this.health = health;
     }
 
-    info(){
-        console.log(`${this.title} - ${this.author}`);
-    }
-}
+    getDemage(damage){
+        if(damage < this.health){
+            this.health = this.health - damage;
+            console.log(this.health);
+            return;
+        }
 
-const book1 = new Book('Lord of the rings', 'Tolkien');
-book1.info();
-
-
-class EBook extends Book{
-    constructor(title, author, pages){
-        super(title,author);
-        this.pages = pages;
-    }
-
-    info(){
-        console.log(`${this.title} - ${this.author} - ${this.pages}`);
+        this.health = 0;
     }
 }
 
-const book2 = new EBook('Lord of the rings', 'Tolkien',100);
-book2.info();
+class Sword {
+    #damage;
+    constructor(damage){
+        this.#damage = damage;
+    }
+
+    strike(enemy){
+        enemy.getDemage(this.#damage);
+    }
+}
+
+class Orc extends Enemy{
+    constructor(health){
+        super(health);
+    }
+
+    getDemage(damage){
+        if(Math.random() > 0.5){
+            if(this.health> damage){
+                this.health = this.health - damage;
+            }else{
+                this.health = 0;
+            }
+            console.log(this.health);
+            return;
+        }
+        console.log(this.health);
+    }
+}
+
+class Troll extends Enemy{
+
+}
+
+const enemy1 = new Orc(10);
+const sword1 = new Sword(3);
+const troll1 = new Troll(20);
+sword1.strike(enemy1);
+sword1.strike(enemy1);
+sword1.strike(enemy1);
+sword1.strike(troll1);
+sword1.strike(troll1);
+sword1.strike(troll1);
+// ad-hock полиморфизм
+'2' + '4'
+2 + 4
