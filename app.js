@@ -20,6 +20,10 @@ class Orc extends Person{
         this.weopean = weopean;
     }
 
+    talk(){
+        return `Меня зовут ${this.name}, говорю на ${this.language} языке. Я обладаю ${this.weopean}`;
+    }
+
     hit(person){
         return `Бью ${person.name} оружеем ${this.weopean}`;
     }
@@ -28,6 +32,9 @@ class Orc extends Person{
 
 class Elf extends Person{
 
+    talk(){
+        return `Меня зовут ${this.name}, говорю на ${this.language} языке. Я знаю заклинание ${this.spell}`;
+    }
     constructor(species,name,language,spell){
         super(species,name,language);
         this.spell = spell;
@@ -43,7 +50,9 @@ const elf = new Elf("эльф","Гондалин","эльфийский","шар
 
 console.log(orc);
 console.log(orc.hit(elf));
+console.log(orc.talk());
 console.log(elf);
+console.log(elf.talk());
 console.log(elf.castSpell());
 
 
