@@ -1,16 +1,30 @@
 'use strict';
 
-function req(id){
+const request = new XMLHttpRequest();
+request.open('Get','https://dummyjson.com/products/');
+request.send();
+
+request.addEventListener('load',function(){
+    const {products} = JSON.parse(this.responseText);
+    console.log(products);
+
+
     const request = new XMLHttpRequest();
-    request.open('Get','https://dummyjson.com/products/'+id);
+    request.open('Get','https://dummyjson.com/products/' + products[0].id);
     request.send();
 
     request.addEventListener('load',function(){
         const data = JSON.parse(this.responseText);
         console.log(data);
+        const request = new XMLHttpRequest();
+        
+        request.open('Get','https://dummyjson.com/products/' + products[1].id);
+        request.send();
+
+        request.addEventListener('load',function(){
+            const data1 = JSON.parse(this.responseText);
+            console.log(data1);
+        });
     });
-}
-req('');
-req(1);
-req(3);
-console.log("end");
+});
+
