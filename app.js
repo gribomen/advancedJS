@@ -1,30 +1,22 @@
 'use strict';
 
-const request = new XMLHttpRequest();
-request.open('Get','https://dummyjson.com/products/');
-request.send();
-
-request.addEventListener('load',function(){
-    const {products} = JSON.parse(this.responseText);
-    console.log(products);
+const request1 = new XMLHttpRequest();
+request1.open('GET','https://pokeapi.co/api/v2/pokemon/ditto');
+request1.send();
+request1.addEventListener('load', function(){
+    const {ability} = JSON.parse(this.responseText).abilities[0];
 
 
-    const request = new XMLHttpRequest();
-    request.open('Get','https://dummyjson.com/products/' + products[0].id);
-    request.send();
+    const request2 = new XMLHttpRequest();
+    request2.open('GET',ability.url);
+    request2.send();
+    request2.addEventListener('load', function(){
+        const description = JSON.parse(this.responseText).effect_entries;
+        for(let {effect,language} of description){
+            if(language.name === "en"){
+                console.log(effect);
+            }
 
-    request.addEventListener('load',function(){
-        const data = JSON.parse(this.responseText);
-        console.log(data);
-        const request = new XMLHttpRequest();
-        
-        request.open('Get','https://dummyjson.com/products/' + products[1].id);
-        request.send();
-
-        request.addEventListener('load',function(){
-            const data1 = JSON.parse(this.responseText);
-            console.log(data1);
-        });
+        }
     });
 });
-
