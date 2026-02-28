@@ -1,13 +1,11 @@
 'use strict';
 
-const res = fetch('https://dummyjson.com/products/1')
-    .then((response) =>{
-        console.log(response);
-        return response.json;
+fetch('https://dummyjson.com/products')
+    .then((response) => response.json())
+    .then(({products})=>{
+        return fetch('https://dummyjson.com/products/' + products[0].id);
     })
-    .then((data) => {
+    .then( response => response.json())
+    .then( data => {
         console.log(data);
     });
-
-console.log(res);
-fetch('https://dummyjson.com/products/1').then((response)=>{return response.json;}).then((data) => {});
