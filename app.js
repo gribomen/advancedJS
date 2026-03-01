@@ -1,22 +1,28 @@
 'use strict';
 
-const request1 = new XMLHttpRequest();
-request1.open('GET','https://pokeapi.co/api/v2/pokemon/ditto');
-request1.send();
-request1.addEventListener('load', function(){
-    const {ability} = JSON.parse(this.responseText).abilities[0];
+function getData(url){
+    return fetch(url)
+        .then( response => {
+            if(!response.ok){
+                throw new Error(`Ошибка: ${response.status}`);
+            }
+            return response.json();
+        })
+}
 
-
-    const request2 = new XMLHttpRequest();
-    request2.open('GET',ability.url);
-    request2.send();
-    request2.addEventListener('load', function(){
-        const description = JSON.parse(this.responseText).effect_entries;
+getData('https://pokeapi.co/api/v2/pokemon/ditto')
+    .then(({abilities}) => {
+        const {ability} = abilities[0];
+        return getData(ability.url);
+    })
+    .then((data) => {
+        const description = data.effect_entries;
         for(let {effect,language} of description){
             if(language.name === "en"){
                 console.log(effect);
             }
-
         }
+    })
+    .catch(error => {
+        console.log(error.message);
     });
-});
