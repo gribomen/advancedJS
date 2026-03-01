@@ -1,36 +1,25 @@
 'use strict';
 
-const header = document.querySelector(".header");
-const categoryList = document.createElement("ul");
-categoryList.classList.add("categorys");
-const nameLi = document.createElement("li");
-nameLi.classList.add("categorys__item");
-nameLi.innerText ="Категории"; 
-categoryList.appendChild(nameLi);
-header.appendChild(categoryList);
-
-fetch('https://dummyjson.com/products/categories')
-    .then(response => response.json())
-    .then(response => {
-            nameLi.addEventListener("click", function(){
-                response.forEach(category => {
-                    const categoryLi = document.createElement("li");
-                    categoryLi.classList.add("categorys__item");
-                    categoryLi.innerText = category.slug;
-                    categoryList.appendChild(categoryLi);
-                });    
-            });
+function getData(url, errorMessage){
+    return fetch(url)
+    .then( response => {
+        if(!response.ok){
+            throw new Error(`${errorMessage} ${response.status}`);
         }
-    ).catch(error => console.log(error))
-  .finally(() => console.log('FINALLY'))
+        return response.json();
+    })
+}
 
-document.addEventListener('click', function(event) {
-
-  if (categoryList.childNodes.length === 1) return;
-  const isClickInside = categoryList.contains(event.target);
-
-  if (!isClickInside) {
-    categoryList.innerHTML = "";
-    categoryList.appendChild(nameLi);
-  }
-});
+getData('https://dummyjson.com/products','Can not get products')
+    .then(({products}) => {
+            console.log(products);
+            return getData('https://dummyjson.com/products/' + products[0].id,'Can not get product 1');
+        }
+    )
+    .then( data => {
+        console.log(data);
+    })
+    .catch(error =>{
+        const el = document.querySelector('.filter');
+        el.innerHTML = error;
+    })
