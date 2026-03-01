@@ -1,24 +1,20 @@
 'use strict';
 
-fetch('https://dummyjson.com/productss')
-    .then(
-        response => {
-            if(!response.ok){
-                throw new Error(`Is error ${response.status}`)
-            }
-            return response.json();
-        }
-    )
-    .then(({products}) => {
-            console.log(products);
-            return fetch('https://dummyjson.com/products/' + products[0].id);
-        }
-    )
-    .then( response => response.json())
-    .then( data => {
-        console.log(data);
-    })
-    .catch(error =>{
-        const el = document.querySelector('.filter');
-        el.innerHTML = error;
-    })
+console.log(1);
+
+setTimeout(() => {
+    console.log(2);
+},0);
+
+Promise.resolve(3).then((res) => {
+    console.log(res);
+    for(let i = 0; i < 10000000000000; i++){
+
+    }
+});
+
+console.log(4);
+
+for(let i = 0; i < 10000000000000; i++){
+
+}
