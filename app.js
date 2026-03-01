@@ -3,7 +3,9 @@
 fetch('https://dummyjson.com/productss')
     .then(
         response => {
-            console.log(response);
+            if(!response.ok){
+                throw new Error(`Is error ${response.status}`)
+            }
             return response.json();
         }
     )
@@ -16,7 +18,7 @@ fetch('https://dummyjson.com/productss')
     .then( data => {
         console.log(data);
     })
-    .catch(error => console.log(error))
-    .finally(() =>{
-        console.log('Finally');
-    });
+    .catch(error =>{
+        const el = document.querySelector('.filter');
+        el.innerHTML = error;
+    })
