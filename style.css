@@ -1,0 +1,18 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.categorys{
+    list-style-type: none;
+    margin-right: 20px;
+}
+
+.categorys__item{
+    border:solid 1px red ;
+    padding: 3px 10px;
+    background: #ab1cbee5;
+    font-size: 18px;
+    color: #ffffffe5;
+}
