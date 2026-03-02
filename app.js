@@ -1,14 +1,30 @@
 'use strict';
 
 async function getProducts(){
-    const productsResponse = await fetch('https://dummyjson/products');
-    const {products} = await productsResponse.json();
-    console.log(products);
+    try{
+        const productsResponse = await fetch('https://dummyjson.com/products');
+        if(!productsResponse.ok){
+            throw new Error(productsResponse.status);
+        }
+        const {products} = await productsResponse.json();
+        console.log(products);
 
-    const productResponse = await fetch('https://dummyjson/products/' + products[0].id );
-    const product = await productResponse.json();
-    console.log(product);
+        const productResponse = await fetch('https://dummyjson.com/products/' + products[0].id );
+        const product = await productResponse.json();
+        console.log(product);
+    }catch(error){
+        console.error(error);
+    }finally{
+        console.log('Finally');
+    }
+
 }
 
+
+try{
+    JSON.parse('DFAS');
+}catch(e){
+    console.log(e);
+}
 getProducts();
 console.log('End');
