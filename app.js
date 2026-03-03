@@ -1,30 +1,18 @@
 'use strict';
 
-async function getProducts(){
-    try{
-        const productsResponse = await fetch('https://dummyjson.com/products');
-        if(!productsResponse.ok){
-            throw new Error(productsResponse.status);
-        }
-        const {products} = await productsResponse.json();
-        console.log(products);
-
-        const productResponse = await fetch('https://dummyjson.com/products/' + products[0].id );
-        const product = await productResponse.json();
-        console.log(product);
-    }catch(error){
-        console.error(error);
-    }finally{
-        console.log('Finally');
+class ProductRepository{
+    async getProducts(){
+        const response = await fetch('https://dummyjson.com/products');
+        console.log(await response.json());
     }
-
 }
 
+const repo = new ProductRepository();
+repo.getProducts();
 
-try{
-    JSON.parse('DFAS');
-}catch(e){
-    console.log(e);
+const asyncArrow = async () => {
+    const response = await fetch('https://dummyjson.com/products');
+    console.log(await response.json());
 }
-getProducts();
-console.log('End');
+ 
+asyncArrow();
