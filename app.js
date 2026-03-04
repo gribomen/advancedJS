@@ -1,56 +1,35 @@
 'use strict';
 
-// Мой вариант
-// const promise = new Promise ( (resolve, reject) => {  navigator.geolocation.getCurrentPosition((position) => {
-//         resolve(fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`));
-    
-//     },(error) => {
-//         reject(error);
-    
-//     })
-// });
+let button;
+let cards;
 
-// promise
-//     .then((response) => {
-//         if(!response.ok){
-//             throw new Error('Error: '+ response.status);
-//         }
-//         return response.json();
-//     })
-//     .then(({city}) => {
-//         console.log(city);
-//     })
-//     .catch(error => console.error(error));
-
-function getMyCoordinates(){
-    return new Promise((resolve, reject)=>{
-        navigator.geolocation.getCurrentPosition(
-            ({ coords }) => {
-                resolve({
-                    latitude: coords.latitude,
-                    longitude: coords.longitude,
-                })
-            }, 
-            (error) => {
-                reject(error);
-            }
-        );
-    
-    })
-}
-
-async function getMyCity(){
-    try{
-        const {latitude, longitude} = await getMyCoordinates();
-        const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`);
-        if(!response.ok){
-            throw new Error(response.status);
+window.onload = () => {
+    button = document.querySelector(".button-generate");
+    cards = document.querySelector(".activity-card");
+    button.addEventListener('click',()=>{
+        cards.innerHTML = "";
+        for(let i = 0; i < 3; i++){
+            generatorCard()
         }
-        const {city} = await response.json();
-        console.log(city);
-    }catch(error){
-        console.error(error);
-    }
+
+    });
 }
 
-getMyCity()
+
+async function generatorCard(){
+    const res = await fetch('https://bored.api.lewagon.com/api/activity');
+    const data = await res.json();
+    const {activity, type} = data;
+    console.log(data);
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `<div class="card__title">
+            ${type}
+        </div>
+        <div class="card__description">
+            ${activity}
+        </div>
+    `;
+    cards.appendChild(card);
+}
+
