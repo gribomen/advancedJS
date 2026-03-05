@@ -1,18 +1,24 @@
 'use strict';
 
-function generate(event){
-    console.log(event.target.getBoundingClientRect())
-    console.log('X offset: ' + window.pageXOffset);
-    console.log('Y offset: ' + window.pageYOffset);
-    console.log(`clientWidth:  ${document.documentElement.clientWidth}`);
-    console.log(`clientHeight:  ${document.documentElement.clientHeight}`);
-    
-    const el = document.querySelector('.down');
-    const rect = el.getBoundingClientRect()
+const btn = document.querySelector(".button");
+const contur1 = document.querySelector(".contur1");
+const contur2 = document.querySelector(".contur2");
+const contur3 = document.querySelector(".contur3");
 
-    window.scrollTo({
-        left: window.pageXOffset + rect.left,
-        top: window.pageYOffset + rect.top,
-        behavior:'smooth'
-    });
-}
+
+btn.addEventListener('click',function(event){
+    console.log("Я кнопка");
+    console.log(event.target);
+},true);
+
+contur1.addEventListener('click',function(event){
+    console.log("Я 1 контур");
+},);
+
+contur2.addEventListener('click',function(event){
+    console.log("Я 2 контур");
+});
+
+contur3.addEventListener('click',function(event){
+    console.log("Я 3 контур");
+});
