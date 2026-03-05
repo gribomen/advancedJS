@@ -1,24 +1,16 @@
 'use strict';
 
-const btn = document.querySelector(".button");
 const contur1 = document.querySelector(".contur1");
-const contur2 = document.querySelector(".contur2");
-const contur3 = document.querySelector(".contur3");
 
+for(let i = 0; i < 100; i++){
+    const el = document.createElement("div");
+    el.innerText = `User id ${i}`;
+    el.setAttribute("data-id", i);
+    el.classList.add("contur2");
+    contur1.append(el);
+}
 
-btn.addEventListener('click',function(event){
-    console.log("Я кнопка");
-    console.log(event.target);
-},true);
-
-contur1.addEventListener('click',function(event){
-    console.log("Я 1 контур");
-},);
-
-contur2.addEventListener('click',function(event){
-    console.log("Я 2 контур");
-});
-
-contur3.addEventListener('click',function(event){
-    console.log("Я 3 контур");
+contur1.addEventListener("click",function(event){
+    const i = event.target.getAttribute('data-id');
+    console.log(`Deleted user ${i}`);
 });
