@@ -1,16 +1,22 @@
 'use strict';
 
-const contur1 = document.querySelector(".contur1");
+const contur1 = document.querySelector('.contur1');
+console.log(contur1);
 
-for(let i = 0; i < 100; i++){
-    const el = document.createElement("div");
-    el.innerText = `User id ${i}`;
-    el.setAttribute("data-id", i);
-    el.classList.add("contur2");
-    contur1.append(el);
-}
+const contur2 = contur1.querySelector('.contur3');
+const button = document.querySelector('button');
+console.log(contur2);
+console.log(contur2.childNodes);
+console.log(contur2.children);
 
-contur1.addEventListener("click",function(event){
-    const i = event.target.getAttribute('data-id');
-    console.log(`Deleted user ${i}`);
-});
+console.log(contur2.parentElement);
+console.log(contur2.parentNode);
+
+console.log(button.closest('.wrapper'));
+
+console.log(button.previousElementSibling);
+console.log(button.previousSibling);
+console.log(button.nextElementSibling);
+console.log(button.nextSibling);
+
+console.log(button.parentElement.children);
