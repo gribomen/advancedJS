@@ -1,0 +1,31 @@
+.button {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 5px;
+    border: solid 1px #c4bdbd;
+    align-items: center;
+}
+
+.logo{
+    width: 1000px;
+}
+
+.contur1{
+    padding: 10px;
+    border: solid 1px #c4bdbd;
+    display: block;
+}
+
+.contur2{
+    padding: 10px;
+    border: solid 1px #c4bdbd;
+}
+
+.contur3{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border: solid 1px #c4bdbd;
+}

@@ -1,21 +1,18 @@
 'use strict';
 
-async function main() {
-    const resUsers = await fetch('https://dummyjson.com/users');
-    const users = await resUsers.json();
-    console.log(users);
-    const res = await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers:{
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            username: "jamesd",
-            password: "jamesdpass"
-        })
-    });
-    const data = await res.json();
-    console.log(data);
-}
+function generate(event){
+    console.log(event.target.getBoundingClientRect())
+    console.log('X offset: ' + window.pageXOffset);
+    console.log('Y offset: ' + window.pageYOffset);
+    console.log(`clientWidth:  ${document.documentElement.clientWidth}`);
+    console.log(`clientHeight:  ${document.documentElement.clientHeight}`);
+    
+    const el = document.querySelector('.down');
+    const rect = el.getBoundingClientRect()
 
-main();
+    window.scrollTo({
+        left: window.pageXOffset + rect.left,
+        top: window.pageYOffset + rect.top,
+        behavior:'smooth'
+    });
+}
