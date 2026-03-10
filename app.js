@@ -1,39 +1,31 @@
 'use strict';
 
-let cards;
-let input;
-input = document.querySelector(".find-card__input")
-cards = document.querySelector(".activity-card");
-cards.innerHTML = "";
-for(let i = 0; i < 20; i++){
-    generatorCard();
+const buttons = document.querySelector(".wrapper-btn");
+const el_count = document.querySelector(".count-btn");
+let count=0;
+
+for(let i = 0; i < 5; i++){
+    const btn = document.createElement("button");
+    btn.classList.add("btn");
+    btn.innerText = "Нажми меня";
+    buttons.append(btn);
 }
 
-input.addEventListener("change", changeInput);
-
-
-async function generatorCard(){
-    const res = await fetch('https://bored.api.lewagon.com/api/activity');
-    const data = await res.json();
-    const {activity, type} = data;
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.innerHTML = `<div class="card__title">
-            ${type}
-        </div>
-        <div class="card__description">
-            ${activity}
-        </div>
-    `;
-    cards.appendChild(card);
-}
-
-function changeInput(){
-    for(let item of cards.childNodes){
-        if(item.innerHTML.includes(input.value) && input.value != ""){
-            item.classList.add("card_active");
-            continue;
+buttons.addEventListener("click",function(event){
+    const el_click = event.target;
+    changeCount();
+    el_click.innerText = "Нажата!";
+    el_click.classList.add("btn_active");
+    for(const item of [...buttons.children]){
+        if(item != el_click){
+            item.innerText = "Нажми меня";
+            item.classList.remove("btn_active");
         }
-        item.classList.remove("card_active");
     }
+
+})
+
+function changeCount(){
+    count++;
+    el_count.innerText = `Счетчик ${count}`;
 }
