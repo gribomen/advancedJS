@@ -1,0 +1,22 @@
+.wrapper-btn{
+    display: flex;
+    gap: 10px;
+} 
+
+.btn{
+    font-size: 18px;
+    background: #bd10c6ca;
+    border: none;
+    border-radius: 10px;
+    padding:5px 10px;
+    color: rgba(240, 248, 255, 0.909);
+    margin-bottom: 10px;
+}
+
+.btn_active{
+    background: green;
+}
+
+.count-btn{
+    color: rgba(240, 248, 255, 0.909);
+}
