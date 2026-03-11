@@ -1,14 +1,16 @@
 'use strict';
  
-function add(f, s){
+export function add(f, s){
     return f + s;
 }
 
-function sub(f, s){
+export function sub(f, s){
     return f - s;
 }
 
-module.exports = {
-    add,
-    sub
-};
+setTimeout(()=>{
+    add = function(f,s){
+        return f*s;
+    };
+
+},1500)
