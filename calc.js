@@ -8,9 +8,9 @@ export function sub(f, s){
     return f - s;
 }
 
-setTimeout(()=>{
-    add = function(f,s){
-        return f*s;
-    };
+async function getProducts(){
+    const res  = await fetch('https://dummyjson.com/products');
+    return res.json();
+}
 
-},1500)
+export const res = await getProducts();
