@@ -1,7 +1,5 @@
 'use strict';
+const {add,sub} = require('./calc.js');
 
-
-(function(){
-    console.log(CALC.calc.add(1,2));
-    console.log(CALC.calc.sub(1,2));
-})()
+console.log(add(1,3));
+console.log(sub(1,3));

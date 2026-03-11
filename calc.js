@@ -1,19 +1,14 @@
 'use strict';
  
-const CALC = {};
+function add(f, s){
+    return f + s;
+}
 
+function sub(f, s){
+    return f - s;
+}
 
-(function(){
-    function add(f, s){
-        return f + s;
-    }
-
-    function sub(f, s){
-        return f - s;
-    }
-
-    CALC.calc = {
-        add,
-        sub
-    }
-})()
+module.exports = {
+    add,
+    sub
+};
