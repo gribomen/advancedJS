@@ -15,17 +15,23 @@
   },
   "license": "ISC",
   "author": "The Great White Rabbit",
-  "type": "commonjs",
-  "main": "app.js",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "build": "rollup",
-    "live-s": "live-server",
+    "start": "live-server",
+    "build": "rollup -c --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "axios": "^1.13.6"
-  },
   "devDependencies": {
-    "rollup": "^4.59.0"
+    "@eslint/css": "^1.0.0",
+    "@eslint/js": "^10.0.1",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "eslint": "^10.0.3",
+    "globals": "^17.4.0",
+    "rollup": "^4.59.0",
+    "rollup-plugin-import-css": "^4.2.0"
+  },
+  "dependencies": {
+    "on-change": "^6.0.2"
   }
 }
