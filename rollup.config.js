@@ -7,7 +7,8 @@ export default{
         dir:"dist",
         format:"iife"
     },
-    plugins:[css({
-      output: 'bundle.css' // Задаем имя выходного файла для CSS
-    }), nodeResolve()]
+    plugins:[
+        css({output: 'bundle.css'}), 
+        nodeResolve()
+    ]
 }
