@@ -1,0 +1,11 @@
+.nav-panel{
+    display: flex;
+    justify-content: space-between;
+}
+
+.timer{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: #f7efef;
+}
